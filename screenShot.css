@@ -1,11 +1,13 @@
 .hide {
     display: none;
+    align-items: center;
+    vertical-align: middle;
 }
 
 .player {
     display: inline-block;
-    width: 200px;
-    min-height: 600px;
+    width: 400px;
+    min-height: 300px;
     vertical-align: middle;
     text-align: center;
     font-size: 2em;
@@ -16,13 +18,12 @@
     display: block;
     margin: auto;
     padding: 7px;
-    height: 110px;
-    width: 80px;
+    height: 200px;
+    width: 160px;
     margin-top: 10px;
-    background-color: rgb(24, 171, 240);
+    background-color: rgb(84, 226, 17);
     border: 1px solid black;
     border-radius: 5px;
-    box-shadow: 5px 10px rgb(248, 18, 18);
 }
 
 .big {
@@ -42,7 +43,7 @@
     font-size: 0.6em;
     line-height: 12px;
     vertical-align: top;
-    text-align: left;
+    text-align: right;
 }
 
 .stats {
@@ -51,12 +52,14 @@
 }
 
 .gameplay {
-    background-color: rgb(190, 233, 35);
+    background-color: rgb(149, 203, 248);
 }
 
 .message {
     font-size: 1.2em;
     padding: 10px;
+    align-items: center;
+    vertical-align: middle;
 }
 
 .start {
@@ -65,17 +68,21 @@
     padding: 10px;
     background-color: blue;
     color: white;
+    align-items: center;
+    vertical-align: middle;
 }
 
 .attack {
     font-size: 1.2em;
     text-align: center;
     padding: 10px;
-    background-color: rgb(241, 10, 10);
-    color: rgb(35, 12, 245);
+    background-color: rgb(17, 0, 0);
+    color: rgb(245, 39, 12);
+    vertical-align: middle;
 }
 
 input {
     width: 85px;
     font-size: 2em;
+    vertical-align: middle;
 }

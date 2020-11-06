@@ -10,7 +10,7 @@ let round = 0;
 let inplay = false;
 let total = 0;
 message.style.color = "red";
-const ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
+const ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King", "Ace"];
 //const ranks = [2, 3];
 const suits = ["hearts", "diams", "clubs", "spades"];
 buttons.forEach(function(item) {
@@ -21,7 +21,7 @@ function playGame(e) {
     let temp = e.target.textContent;
     if (temp == "Start") {
         message.style.color = "black";
-        btnToggle();
+        btnHide();
         startGame();
     }
     if (temp == "Attack") {
@@ -37,7 +37,7 @@ function playGame(e) {
     }
 }
 
-function btnToggle() {
+function btnHide() {
     buttons[0].classList.toggle("hide");
     buttons[1].classList.toggle("hide");
 }
@@ -55,19 +55,27 @@ function startGame() {
 
 function showCard(el, card) {
     if (card != undefined) {
-        el.style.backgroundColor = "white";
-        let html1 = card.rank + "<br>&" + card.suit + ";";
+        el.style.backgroundColor = "green";
+        let html1 = card.rank + "&" + card.suit + ";";
         let html2 = card.rank + "&" + card.suit + ";";
         let div = document.createElement("div");
         div.classList.add("card");
         if (card.suit === "hearts" || card.suit === "diams") {
             div.classList.add("red");
         }
-
+        let span1 = document.createElement("span");
+        span1.innerHTML = html2;
+        span1.classList.add("tiny");
+        div.appendChild(span1);
+        let span2 = document.createElement("span");
+        span2.innerHTML = html1;
+        span2.classList.add("big");
+        div.appendChild(span2);
+        el.appendChild(div);
     }
 }
 
-function dealRound(playerList, tempHolder) {
+function dealRound(playerList, currentCard) {
     let curWinner = {
         "high": null,
         "player": playerList[0]
@@ -89,19 +97,19 @@ function dealRound(playerList, tempHolder) {
                 curWinner.player = tempPlayerIndex;
                 curWinner.card = card;
             }
-            tempHolder.push(card);
+            currentCard.push(card);
             showCard(players[tempPlayerIndex], card);
         }
     }
     if (playoff.length > 0) {
-        dealRound(playoff, tempHolder);
+        dealRound(playoff, currentCard);
     } else {
-        updater(curWinner.player, tempHolder);
+        updater(curWinner.player, currentCard);
     }
 }
 
 function makeCards() {
-    let tempHolder = [];
+    let currentCard = [];
     let playerList = [];
     for (let x = 0; x < players.length; x++) {
         players[x].innerHTML = "";
@@ -112,26 +120,26 @@ function makeCards() {
     if (playerList.length == 1) {
         winGame();
     }
-    dealRound(playerList, tempHolder);
+    dealRound(playerList, currentCard);
 }
 
 function winGame() {
-    message.style.color = "red";
-    btnToggle();
+    message.style.color = "blue";
+    btnHide();
     inplay = false;
     for (let x = 0; x < players.length; x++) {
-        players[x].innerHTML += (deals[x].length >= total) ? "<br>WINNER" : "<br>LOSER";
+        players[x].innerHTML += (deals[x].length >= total) ? "WINNER" : "LOSER";
     }
     message.innerHTML = "Select number of players";
     document.querySelector("input").value = "2";
 }
 
-function updater(winner, tempHolder) {
-    players[winner].style.backgroundColor = "black";
-    tempHolder.sort(function() {
+function updater(winner, currentCard) {
+    players[winner].style.backgroundColor = "Gold";
+    currentCard.sort(function() {
         return .5 - Math.random();
     })
-    for (let record of tempHolder) {
+    for (let record of currentCard) {
         deals[winner].push(record);
     }
     for (let x = 0; x < players.length; x++) {
@@ -145,7 +153,7 @@ function updater(winner, tempHolder) {
         }
         players[x].appendChild(div);
     }
-    res.innerHTML += "Player " + (winner + 1) + " won " + tempHolder.length + " cards<br>";
+    res.innerHTML += "Player " + (winner + 1) + " won " + currentCard.length + " cards<br>";
 }
 
 function dealCards(playerCard) {
