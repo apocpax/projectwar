@@ -1,7 +1,6 @@
 .hide {
     display: none;
     align-items: center;
-    vertical-align: middle;
 }
 
 .player {
@@ -59,7 +58,6 @@
     font-size: 1.2em;
     padding: 10px;
     align-items: center;
-    vertical-align: middle;
 }
 
 .start {
@@ -69,7 +67,6 @@
     background-color: blue;
     color: white;
     align-items: center;
-    vertical-align: middle;
 }
 
 .attack {
@@ -78,11 +75,9 @@
     padding: 10px;
     background-color: rgb(17, 0, 0);
     color: rgb(245, 39, 12);
-    vertical-align: middle;
 }
 
 input {
     width: 85px;
     font-size: 2em;
-    vertical-align: middle;
 }

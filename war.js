@@ -3,6 +3,9 @@ const buttons = document.querySelectorAll("button");
 const gameplay = document.querySelector(".gameplay");
 const userPlay = document.querySelector(".userPlay");
 const res = document.querySelector(".res");
+
+
+
 let deck = [];
 let players = [];
 let deals = [];
@@ -11,7 +14,6 @@ let inplay = false;
 let total = 0;
 message.style.color = "red";
 const ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King", "Ace"];
-//const ranks = [2, 3];
 const suits = ["hearts", "diams", "clubs", "spades"];
 buttons.forEach(function(item) {
     item.addEventListener("click", playGame);
